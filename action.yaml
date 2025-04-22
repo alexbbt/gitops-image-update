@@ -57,7 +57,7 @@ runs:
       working-directory: ./repository
       run: |
         echo "${{ inputs.VALUES_FILE_PATH }}" | while IFS= read -r file; do
-          sed -i 's|${{ inputs.VALUE_NAME }}: .*$|${{ inputs.VALUE_NAME }}: "'${{ inputs.TAG }}'"|g' "$file"
+          sed -i 's|\(${{ inputs.VALUE_NAME }}\):.*"|\1:'${{ inputs.TAG }}'"|g' "$file"
         done
       shell: bash
 
